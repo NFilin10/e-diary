@@ -4,15 +4,23 @@ public class Opilane {
     private String eesnimi;
     private String perenimi;
 
-//    private ArrayList<Integer> hinded;
+    private ArrayList<Integer> hinded;
 
-    public Opilane(String eesnimi, String perenimi) {
+    public Opilane(String eesnimi, String perenimi, ArrayList hinded) {
         this.eesnimi = eesnimi;
         this.perenimi = perenimi;
-//        this.hinded = hinded;
+        this.hinded = hinded;
     }
 
     public String getEesnimi() {
         return eesnimi;
+    }
+
+    public String getPerenimi() {
+        return perenimi;
+    }
+
+    public ArrayList<Integer> getHinded() {
+        return hinded;
     }
 }
