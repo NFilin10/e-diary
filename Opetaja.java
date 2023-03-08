@@ -24,14 +24,13 @@ public class Opetaja {
             ained[i] = aineNimi;
         }
 
+        ArrayList<ArrayList<Opilane>> opilasteObjektidMax = new ArrayList<>(ainete_arv);
 
-        Opilane[][] opilasteObjektidMax = new Opilane[ainete_arv][40];
-
-
-       // [[[op1, op2], aine], [[op1, op2], aine]]
+        System.out.println(opilasteObjektidMax);
+        // [[[op1, op2], aine], [[op1, op2], aine]]
 
         Scanner userInput2 = new Scanner(System.in);
-        int i = 0;
+        int i = ainete_arv-1;
         while (true){
             System.out.println("Sisesta opilase eesnimi");
             String eesnimi = userInput2.nextLine();
@@ -41,32 +40,35 @@ public class Opetaja {
             if (perenimi.equals("q")) break;
 
             ArrayList<Integer> hinded = new ArrayList<>();
-            for (int j = 0; j < opilasteObjektidMax.length; j++) {
-                Opilane q = new Opilane(eesnimi, perenimi, hinded);
-                opilasteObjektidMax[j][i] = q;
+
+
+            while (i >= 0){
+                opilasteObjektidMax.add(new ArrayList<>());
+                i--;
             }
-            i++;
+
+
+            for (int j = 0; j < ainete_arv; j++) {
+                Opilane q = new Opilane(eesnimi, perenimi, hinded);
+                opilasteObjektidMax.get(j).add(q);
+            }
         }
 
-        System.out.println(Arrays.deepToString(opilasteObjektidMax));
-        System.out.println(i);
-        Opilane[][] opilasteObjektid = new Opilane[ainete_arv][];
-        for (int j = 0; j < opilasteObjektidMax.length; j++) {
-            opilasteObjektid[j] = Arrays.copyOfRange(opilasteObjektidMax[j],0, i);
-        }
 
+        System.out.println(opilasteObjektidMax);
 
-        Aine[] aineteKogum = new Aine[opilasteObjektid.length];
+        Aine[] aineteKogum = new Aine[opilasteObjektidMax.size()];
 
-        for (int j = 0; j < opilasteObjektid.length; j++) {
-            Aine aine = new Aine(ained[j], opilasteObjektid[j]);
+        for (int j = 0; j < opilasteObjektidMax.size(); j++) {
+            Aine aine = new Aine(ained[j], opilasteObjektidMax.get(j));
             aineteKogum[j] = aine;
         }
 
         for (int j = 0; j < aineteKogum.length; j++) {
             System.out.println(aineteKogum[j].aineNimi);
-            for (int k = 0; k < aineteKogum[j].opilasteGrupp.length; k++) {
-                System.out.println(aineteKogum[j].opilasteGrupp[k].getEesnimi());
+            for (int k = 0; k < aineteKogum[j].opilasteGrupp.size(); k++) {
+                System.out.println(aineteKogum[j].opilasteGrupp.get(k).getEesnimi());
+
             }
 
         }
