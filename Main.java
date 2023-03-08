@@ -5,23 +5,29 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void opetaja(Aine[] opilased, Opetaja opetaja){
+    public static void opetaja(ArrayList<Klass> opilased, Opetaja opetaja){
         Scanner teacherInput = new Scanner(System.in);
         while (true) {
-            System.out.println("Valige tegevus:\n1. Lisa hinne");
+            System.out.println("Valige tegevus:\n1. Lisa uus klass\n2. Lisa hinne");
             String tegevus = teacherInput.nextLine();
 
             if (tegevus.equals("1")){
-                opetaja.lisaHinne(opilased);
+                opetaja.lisaOpilane();
             }
 
+            if (tegevus.equals("2")){
+                opetaja.lisaHinne(opilased);
+
+            }
             else if (tegevus.equals("q")) break;
         }
     }
 
 
-    public static void opilane(Aine[] opilased){
+    public static void opilane(ArrayList<Klass> opilased){
         Scanner studentInput = new Scanner(System.in);
+        System.out.println("Sisestage oma klass");
+        String opilaseKlass = studentInput.nextLine();
         System.out.println("Sisestage oma eesnimi");
         String opilaseEesnimi = studentInput.nextLine();
         System.out.println("Valige tegevus:\n1. Vaata hinned");
@@ -29,10 +35,19 @@ public class Main {
         if (tegevus.equals("1")){
             System.out.println("Sisesta mis tunni hindeid soovid vaadata");
             String tund = studentInput.nextLine();
-            for (Aine aine : opilased) {
-                for (Opilane opilane : aine.opilasteGrupp) {
-                    if (opilane.getEesnimi().equals(opilaseEesnimi) && aine.aineNimi.equals(tund)){
-                        System.out.println(opilane.getHinded());
+
+            for (Klass klass : opilased) {
+                if (klass.getKlass().equals(opilaseKlass)) {
+                    for (Aine aine : klass.getAineteKogum()) {
+                        if (aine.aineNimi.equals(tund)) {
+                            for (Opilane klass1 : aine.opilasteGrupp) {
+                                if (klass1.getEesnimi().equals(opilaseEesnimi)) {
+                                    System.out.println(klass1.getHinded());
+                                }
+                            }
+                        }
+
+
                     }
                 }
             }
@@ -51,7 +66,8 @@ public class Main {
         String perenimi = teacherInput.nextLine();
         Opetaja opetaja = new Opetaja(eesnimi, perenimi);
         System.out.println("Esmalt peate lisama õpilasi");
-        Aine[] opiliased = opetaja.lisaOpilane();
+        ArrayList<Klass> opiliased = opetaja.lisaOpilane();
+
         opetaja(opiliased, opetaja);
 
         while (true) {

@@ -9,8 +9,7 @@ public class Aine {
         this.opilasteGrupp = opilasteGrupp;
     }
 
-    public Aine() {
-    }
+
 
 
 
