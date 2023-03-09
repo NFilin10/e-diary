@@ -1,12 +1,15 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
-public class Opilane {
+public class Õpilane {
     private String eesnimi;
     private String perenimi;
 
     private ArrayList<Integer> hinded;
 
-    public Opilane(String eesnimi, String perenimi, ArrayList hinded) {
+    public Õpilane(){};
+
+    public Õpilane(String eesnimi, String perenimi, ArrayList hinded) {
         this.eesnimi = eesnimi;
         this.perenimi = perenimi;
         this.hinded = hinded;
@@ -22,5 +25,15 @@ public class Opilane {
 
     public ArrayList<Integer> getHinded() {
         return hinded;
+    }
+
+    public void vaataHindeid(){
+        if (hinded.isEmpty()){
+            System.out.println("hindeid pole");
+        } else {
+            for (Integer hinne : hinded) {
+                System.out.println(hinne);
+            }
+        }
     }
 }
