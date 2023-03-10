@@ -7,18 +7,17 @@ public class Main {
     public static void õpetajaRoll(ArrayList<Klass> klassid, Õpetaja õpetaja){
         Scanner õpetajaRolliSisend = new Scanner(System.in);
         while (true) {
-            System.out.println("Valige tegevus:\n1. Lisa uus klass\n2. Lisa hinne");
+            System.out.println("Valige tegevus:\n1. Lisa uus klass\n2. Lisa hinne\n3. Vali suvalist õpilast");
             String tegevus = õpetajaRolliSisend.nextLine();
 
             if (tegevus.equals("1")){
                 õpetaja.moodustaGrupp();
-            }
-
-            else if (tegevus.equals("2")){
+            } else if (tegevus.equals("2")){
                 õpetaja.lisaHinne(klassid);
 
-            }
-            else if (tegevus.equals("q")) break;
+            } else if (tegevus.equals("3")) {
+                õpetaja.tahvliJuurde(klassid);
+            } else if (tegevus.equals("q")) break;
         }
     }
 
@@ -49,6 +48,10 @@ public class Main {
             }
             if (tegevus.equals("1")) {
                 otsitavÕpilane.vaataHindeid();
+            } else if (tegevus.equals("2")) {
+                otsitavÕpilane.hinnedFaili();
+            } else if (tegevus.equals("3")) {
+                otsitavÕpilane.õpilaseKeskmineHinned();
             }
         }
     }

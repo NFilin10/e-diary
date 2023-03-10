@@ -49,7 +49,7 @@ public class Õpetaja {
             }
 
             for (int j = 0; j < aineteArv; j++) {
-                Õpilane õpilane = new Õpilane(õpilaseEesnimi, õpilasePerenimi, hinded);
+                Õpilane õpilane = new Õpilane(õpilaseEesnimi, õpilasePerenimi, hinded, aineteKogum[j]);
                 õpilasteGrupp.get(j).add(õpilane);
             }
         }
@@ -89,4 +89,9 @@ public class Õpetaja {
         }
     }
 
+    public void tahvliJuurde(ArrayList<Klass> klassid){
+        //спрашиваем в каком классе нужно рандомно вызвать ученика к доске
+        //находим нужный класс, генерируем рандомное число исходя из количества учеников и принтуем имя и фамилию ученика
+        // который находится под выпавшим номером
+    }
 }
