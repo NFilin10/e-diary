@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Õpetaja {
@@ -93,5 +94,28 @@ public class Õpetaja {
         //спрашиваем в каком классе нужно рандомно вызвать ученика к доске
         //находим нужный класс, генерируем рандомное число исходя из количества учеников и принтуем имя и фамилию ученика
         // который находится под выпавшим номером
+        Scanner õpilaneTahvliJuurde = new Scanner(System.in);
+
+        System.out.println("Vali klass millest õpilane tuleb tahvli juurde ");
+        String valitudKlass = õpilaneTahvliJuurde.nextLine();
+        System.out.println(klassid.size());
+
+        stop:
+        for (Klass klass : klassid) {
+            if (klass.getKlassiNumber().equals(valitudKlass)){
+                int juhuslikOpilane = (int) ((Math.random() * (klass.getÕpilasteGrupp().size())));
+                int loendur = 0;
+                for (Õpilane õpilane : klass.getÕpilasteGrupp()) {
+                    if (loendur == juhuslikOpilane){
+                        System.out.println("Tahvli juurde läheb: " + õpilane.getEesnimi() + " " + õpilane.getPerenimi());
+                        break stop;
+                    }
+                    loendur++;
+                }
+            }
+            else{
+                System.out.println("Sellist klassi pole");
+            }
+        }
     }
 }

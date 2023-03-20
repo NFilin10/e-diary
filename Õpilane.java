@@ -49,6 +49,18 @@ public class Õpilane {
     }
 
     public void õpilaseKeskmineHinned(){
-        //метод используя поле hinded выводит среднуюю оценку ученика
+
+        int kokku = 0;
+
+        if (hinded.isEmpty()){
+            System.out.println("hindeid pole");
+        }
+        else {
+            for (Integer hinne : hinded) {
+                kokku += hinne;
+            }
+            double keskmineHinne = (double) kokku / hinded.size();
+            System.out.println("keskmine hinne: " + keskmineHinne);
+        }
     }
 }

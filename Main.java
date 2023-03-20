@@ -31,7 +31,7 @@ public class Main {
 
 
         while (true){
-            System.out.println("Valige tegevus:\n1. Vaata hinned");
+            System.out.println("Valige tegevus:\n1. Vaata hinned\n2. Hinded faili\n3. Vaata keskmist hinnet");
             String tegevus = õpilaseRolliSisend.nextLine();
             if (tegevus.equals("q")) break;
             System.out.println("Sisesta mis tunni hindeid soovid vaadata");
