@@ -1,5 +1,10 @@
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.io.FileWriter;
+
 
 public class Õpilane {
     private String eesnimi;
@@ -27,40 +32,64 @@ public class Õpilane {
     }
 
     public ArrayList<Integer> getHinded() {
-        return hinded;
+        return this.hinded;
     }
 
     public String getAine() {
         return aine;
     }
 
-    public void vaataHindeid(){
-        if (hinded.isEmpty()){
-            System.out.println("hindeid pole");
-        } else {
-            for (Integer hinne : hinded) {
-                System.out.println(hinne);
+    public void vaataHindeid(ArrayList<Klass> klassid, String õpilasePerenimi, String õpilaseKlass, String valitudAine){
+        stop:
+        for (Klass klass : klassid) {
+            if (klass.getKlassiNumber().equals(õpilaseKlass) && klass.getAine().equals(valitudAine)){
+                for (Õpilane õpilane : klass.getÕpilasteGrupp()) {
+                    if (õpilane.getPerenimi().equals(õpilasePerenimi)){
+                        for (int hinne : õpilane.getHinded()) {
+                            if (õpilane.getHinded().isEmpty()){
+                                System.out.println("Hindeid pole");
+                                break stop;
+                            }
+                            System.out.println(hinne);
+                        }
+                    }
+                }
             }
         }
     }
 
-    public void hinnedFaili(){
-        System.out.println(aine);
+    public void hinnedFaili(ArrayList<Klass> klassid, String õpilasePerenimi, String õpilaseKlass) throws Exception{
+        PrintWriter myWriter = new PrintWriter(õpilasePerenimi + ".txt", "UTF-8");
+        for (Klass klass : klassid) {
+            if (klass.getKlassiNumber().equals(õpilaseKlass)) {
+                for (Õpilane õpilane : klass.getÕpilasteGrupp()) {
+                    if (õpilane.getPerenimi().equals(õpilasePerenimi)) {
+                        myWriter.write(klass.getAine() + "\n");
+                        for (int hinne : õpilane.getHinded()) {
+                            myWriter.write(hinne + ", ");
+                        }
+                        myWriter.write("\n");
+                    }
+                }
+            }
+        }
+        myWriter.flush();
     }
 
-    public void õpilaseKeskmineHinned(){
-
-        int kokku = 0;
-
-        if (hinded.isEmpty()){
-            System.out.println("hindeid pole");
-        }
-        else {
-            for (Integer hinne : hinded) {
-                kokku += hinne;
+    public void õpilaseKeskmineHinned(ArrayList<Klass> klassid, String õpilasePerenimi, String õpilaseKlass, String valitudAine){
+        for (Klass klass : klassid) {
+            if (klass.getKlassiNumber().equals(õpilaseKlass) && klass.getAine().equals(valitudAine)) {
+                for (Õpilane õpilane : klass.getÕpilasteGrupp()) {
+                    int summa = 0;
+                    if (õpilane.getPerenimi().equals(õpilasePerenimi)){
+                        for (int hinne : õpilane.getHinded()) {
+                            summa+=hinne;
+                        }
+                        double keskmineHinne = (double) summa/ õpilane.getHinded().size();
+                        System.out.println(keskmineHinne);
+                    }
+                }
             }
-            double keskmineHinne = (double) kokku / hinded.size();
-            System.out.println("keskmine hinne: " + keskmineHinne);
         }
     }
 }

@@ -35,14 +35,13 @@ public class Õpetaja {
         Scanner õpetajaSisendGrupp2 = new Scanner(System.in);
         int i = aineteArv-1;
         while (true){
-            System.out.println("Sisesta opilase eesnimi");
+            System.out.println("Sisesta opilase eesnimi\nLõpetamiseks sisestage 'q'");
             String õpilaseEesnimi = õpetajaSisendGrupp2.nextLine();
             if (õpilaseEesnimi.equals("q")) break;
             System.out.println("Sisesta opilase perenimi");
             String õpilasePerenimi = õpetajaSisendGrupp2.nextLine();
             if (õpilasePerenimi.equals("q")) break;
 
-            ArrayList<Integer> hinded = new ArrayList<>();
 
             while (i >= 0){
                 õpilasteGrupp.add(new ArrayList<>());
@@ -50,6 +49,7 @@ public class Õpetaja {
             }
 
             for (int j = 0; j < aineteArv; j++) {
+                ArrayList<Integer> hinded = new ArrayList<>();
                 Õpilane õpilane = new Õpilane(õpilaseEesnimi, õpilasePerenimi, hinded, aineteKogum[j]);
                 õpilasteGrupp.get(j).add(õpilane);
             }
@@ -67,6 +67,35 @@ public class Õpetaja {
         return klassid;
     }
 
+    public void kuvaKlassid(ArrayList<Klass> klassid){
+        for (Klass klass : klassid) {
+            System.out.println(klass.getKlassiNumber());
+        }
+        System.out.println();
+    }
+
+    public void kuvaNimekiri(ArrayList<Klass> klassid){
+        Scanner klassiValik = new Scanner(System.in);
+        System.out.println("Vali klass");
+        String valitudKlass = klassiValik.nextLine();
+
+        for (Klass klass : klassid) {
+            if (klass.getKlassiNumber().equals(valitudKlass)){
+                int num = 1;
+                System.out.println(klass.getKlassiNumber());
+                for (Õpilane õpilane : klass.getÕpilasteGrupp()) {
+                    System.out.println(num + ". " + õpilane.getEesnimi() + " " + õpilane.getPerenimi());
+                    num++;
+                }
+                System.out.println();
+                break;
+            }
+            else{
+                System.out.println("Sellist klassi ei ole");
+            }
+        }
+    }
+
     public void lisaHinne(ArrayList<Klass> klassid){
         Scanner õpetajaSisendHinne = new Scanner(System.in);
 
@@ -79,16 +108,46 @@ public class Õpetaja {
         System.out.println("Sisesta hinne");
         int hinne = õpetajaSisendHinne.nextInt();
 
+        stop:
         for (Klass klass : klassid) {
             if (klass.getAine().equals(valitudAine) && klass.getKlassiNumber().equals(valitudKlass)){
                 for (Õpilane õpilane : klass.getÕpilasteGrupp()) {
-                    if (õpilane.getEesnimi().equals(valitudOpilane)){
+                    if (õpilane.getPerenimi().equals(valitudOpilane)){
                         õpilane.getHinded().add(hinne);
+                        break stop;
                     }
                 }
             }
         }
     }
+
+
+    public void aineKeskmineHinne(ArrayList<Klass> klassid){
+        Scanner õpetajaSisendHinne = new Scanner(System.in);
+
+        System.out.println("Vali klass kuhu soovid hinnet panna");
+        String valitudKlass = õpetajaSisendHinne.nextLine();
+        System.out.println("Vali aine kuhu soovid hinnet panna");
+        String valitudAine = õpetajaSisendHinne.nextLine();
+
+        for (Klass klass : klassid) {
+            if (klass.getAine().equals(valitudAine) && klass.getKlassiNumber().equals(valitudKlass)){
+                int hinneteSumma = 0;
+                int kokkuHindeid = 0;
+                for (Õpilane õpilane : klass.getÕpilasteGrupp()) {
+                    kokkuHindeid += õpilane.getHinded().size();
+                    for (int hinne : õpilane.getHinded()) {
+                        hinneteSumma+=hinne;
+                    }
+                }
+                double keskmineHinne = (double) hinneteSumma/kokkuHindeid;
+                System.out.println(keskmineHinne);
+                System.out.println();
+                break;
+            }
+        }
+    }
+
 
     public void tahvliJuurde(ArrayList<Klass> klassid){
         //спрашиваем в каком классе нужно рандомно вызвать ученика к доске
@@ -98,7 +157,6 @@ public class Õpetaja {
 
         System.out.println("Vali klass millest õpilane tuleb tahvli juurde ");
         String valitudKlass = õpilaneTahvliJuurde.nextLine();
-        System.out.println(klassid.size());
 
         stop:
         for (Klass klass : klassid) {
@@ -108,14 +166,13 @@ public class Õpetaja {
                 for (Õpilane õpilane : klass.getÕpilasteGrupp()) {
                     if (loendur == juhuslikOpilane){
                         System.out.println("Tahvli juurde läheb: " + õpilane.getEesnimi() + " " + õpilane.getPerenimi());
+                        System.out.println();
                         break stop;
                     }
                     loendur++;
                 }
             }
-            else{
-                System.out.println("Sellist klassi pole");
-            }
         }
     }
 }
+
