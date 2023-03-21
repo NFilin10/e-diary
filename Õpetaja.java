@@ -103,22 +103,28 @@ public class Õpetaja {
         String valitudKlass = õpetajaSisendHinne.nextLine();
         System.out.println("Vali aine kuhu soovid hinnet panna");
         String valitudAine = õpetajaSisendHinne.nextLine();
-        System.out.println("Vali opilast kellele soovid hinnet panna");
-        String valitudOpilane = õpetajaSisendHinne.nextLine();
-        System.out.println("Sisesta hinne");
-        int hinne = õpetajaSisendHinne.nextInt();
 
-        stop:
-        for (Klass klass : klassid) {
-            if (klass.getAine().equals(valitudAine) && klass.getKlassiNumber().equals(valitudKlass)){
-                for (Õpilane õpilane : klass.getÕpilasteGrupp()) {
-                    if (õpilane.getPerenimi().equals(valitudOpilane)){
-                        õpilane.getHinded().add(hinne);
-                        break stop;
+        while (true){
+            Scanner õpetajaSisendHinne1 = new Scanner(System.in);
+            System.out.println("Vali opilast kellele soovid hinnet panna\nLõpetamiseks sisestage 'q'");
+            String valitudOpilane = õpetajaSisendHinne1.nextLine();
+            if (valitudOpilane.equals("q")) break;
+            System.out.println("Sisesta hinne");
+            int hinne = õpetajaSisendHinne1.nextInt();
+
+            stop:
+            for (Klass klass : klassid) {
+                if (klass.getAine().equals(valitudAine) && klass.getKlassiNumber().equals(valitudKlass)){
+                    for (Õpilane õpilane : klass.getÕpilasteGrupp()) {
+                        if (õpilane.getPerenimi().equals(valitudOpilane)){
+                            õpilane.getHinded().add(hinne);
+                            break stop;
+                        }
                     }
                 }
             }
         }
+
     }
 
 
