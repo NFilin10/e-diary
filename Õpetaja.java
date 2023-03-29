@@ -14,6 +14,10 @@ public class Õpetaja {
         this.perenimi = perenimi;
     }
 
+    /**
+     * Klasside loomine
+     * @return klasside ArraytList
+     */
     public ArrayList<Klass> moodustaGrupp(){
         Scanner õpetajaSisendGrupp = new Scanner(System.in);
         System.out.println("Sisestage klass: ");
@@ -67,6 +71,10 @@ public class Õpetaja {
         return klassid;
     }
 
+    /**
+     * Kuvab klassi nimekirja
+     * @param klassid kõikide klasside ArrayList
+     */
     public void kuvaNimekiri(ArrayList<Klass> klassid){
         Scanner klassiValik = new Scanner(System.in);
         System.out.println("Valige klass");
@@ -88,6 +96,10 @@ public class Õpetaja {
         }
     }
 
+    /**
+     * Meetod võimaldab lisada hindeid
+     * @param klassid kõikide klasside ArrayList
+     */
     public void lisaHinne(ArrayList<Klass> klassid){
         Scanner õpetajaSisendHinne = new Scanner(System.in);
 
@@ -122,6 +134,10 @@ public class Õpetaja {
     }
 
 
+    /**
+     * Meetod arvutab õpilaste keskmist hinnet aine eest
+     * @param klassid kõikide klasside ArrayList
+     */
     public void aineKeskmineHinne(ArrayList<Klass> klassid){
         Scanner õpetajaSisendHinne = new Scanner(System.in);
 
@@ -153,6 +169,10 @@ public class Õpetaja {
     }
 
 
+    /**
+     * Meetod kuvab juhuslikku õpilast valitud klassist
+     * @param klassid kõikide klasside ArrayList
+     */
     public void tahvliJuurde(ArrayList<Klass> klassid){
         Scanner õpilaneTahvliJuurde = new Scanner(System.in);
 
@@ -179,6 +199,11 @@ public class Õpetaja {
         }
     }
 
+    /**
+     * Meetod kirjutab valitud klassi kõikide õpilaste hindeid eraldi faili
+     * @param klassid kõikide klasside ArrayList
+     * @throws Exception
+     */
     public void hindedFaili(ArrayList<Klass> klassid) throws Exception{
         Scanner klassiValik = new Scanner(System.in);
         System.out.println("Sisestage klass: ");

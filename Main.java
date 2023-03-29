@@ -4,6 +4,12 @@ import java.util.Scanner;
 
 public class Main {
 
+    /**
+     * Meetod kuvab õpetaja jaoks menüü, mis hiljem töötab teiste klasside ja meetodite abil
+     * @param klassid kõikide klasside ArrayList
+     * @param õpetaja Õpetaja objekt
+     * @throws Exception
+     */
     public static void õpetajaRoll(ArrayList<Klass> klassid, Õpetaja õpetaja) throws Exception{
         Scanner õpetajaRolliSisend = new Scanner(System.in);
         while (true) {
@@ -27,6 +33,11 @@ public class Main {
     }
 
 
+    /**
+     * Meetod kuvab õpilasele menüü, kus küsitakse tema perekonnanime ja klassi, mis edaspidi töötab teiste klasside ja meetodite abil.
+     * @param klassid kõikide klasside ArrayList
+     * @throws Exception
+     */
     public static void õpilaseRoll(ArrayList<Klass> klassid) throws Exception {
         Scanner õpilaseRolliSisend = new Scanner(System.in);
         System.out.println("Sisestage oma perenimi");

@@ -14,18 +14,37 @@ public class Õpilane {
 
     }
 
+    /**
+     * Õpilase eesnime get method
+     * @return õpilase eesnimi
+     */
     public String getEesnimi() {
         return eesnimi;
     }
 
+    /**
+     * Õpilase perenime get method
+     * @return õpilase perenimi
+     */
     public String getPerenimi() {
         return perenimi;
     }
 
+    /**
+     * Õpilase hinnete get method
+     * @return õpilase hinded
+     */
     public ArrayList<Integer> getHinded() {
         return this.hinded;
     }
 
+    /**
+     * Meetod kuvab õpilase hindeid aine eest
+     * @param klassid kõikide klasside ArrayList
+     * @param õpilasePerenimi õpilase perenimi
+     * @param õpilaseKlass õpilase klassi number
+     * @param valitudAine valitud aine
+     */
     public void vaataHindeid(ArrayList<Klass> klassid, String õpilasePerenimi, String õpilaseKlass, String valitudAine){
         for (Klass klass : klassid) {
             //otsime sobilikku klassi
@@ -40,9 +59,15 @@ public class Õpilane {
                 }
             }
         }
-
     }
 
+    /**
+     * Meetod kirjutab õpilase hindeid eraldi faili
+     * @param klassid kõikide klasside ArrayList
+     * @param õpilasePerenimi õpilase perenimi
+     * @param õpilaseKlass õpilase klassi number
+     * @throws Exception
+     */
     public void hinnedFaili(ArrayList<Klass> klassid, String õpilasePerenimi, String õpilaseKlass) throws Exception{
         PrintWriter myWriter = new PrintWriter(õpilasePerenimi + ".txt", "UTF-8");
         for (Klass klass : klassid) {
@@ -64,6 +89,13 @@ public class Õpilane {
         myWriter.flush();
     }
 
+    /**
+     * Meetod arvutab õpilas keskmist hinnet aine eest
+     * @param klassid kõikide klasside ArrayList
+     * @param õpilasePerenimi õpilase perenimi
+     * @param õpilaseKlass õpilase klassi number
+     * @param valitudAine õpilase poolt valitud aine
+     */
     public void õpilaseKeskmineHinne(ArrayList<Klass> klassid, String õpilasePerenimi, String õpilaseKlass, String valitudAine){
         for (Klass klass : klassid) {
             if (klass.getKlassiNumber().equals(õpilaseKlass) && klass.getAine().equals(valitudAine)) {

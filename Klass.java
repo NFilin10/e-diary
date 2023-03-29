@@ -14,14 +14,26 @@ public class Klass {
 
     }
 
+    /**
+     * Klassi numbri get meetod
+     * @return klassi number
+     */
     public String getKlassiNumber() {
         return klassiNumber;
     }
 
+    /**
+     * Aine nimetuse get meetod
+     * @return aine nimetus
+     */
     public String getAine() {
         return aine;
     }
 
+    /**
+     * Õpilaste gruppide get meetod
+     * @return õpilaste grupp
+     */
     public ArrayList<Õpilane> getÕpilasteGrupp() {
         return õpilasteGrupp;
     }
