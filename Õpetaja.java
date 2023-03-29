@@ -16,7 +16,7 @@ public class Õpetaja {
 
     /**
      * Klasside loomine
-     * @return klasside ArraytList
+     * @return klasside ArrayList
      */
     public ArrayList<Klass> moodustaGrupp(){
         Scanner õpetajaSisendGrupp = new Scanner(System.in);

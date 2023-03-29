@@ -15,7 +15,7 @@ public class Õpilane {
     }
 
     /**
-     * Õpilase eesnime get method
+     * Õpilase eesnime get meetod
      * @return õpilase eesnimi
      */
     public String getEesnimi() {
@@ -23,7 +23,7 @@ public class Õpilane {
     }
 
     /**
-     * Õpilase perenime get method
+     * Õpilase perenime get meetod
      * @return õpilase perenimi
      */
     public String getPerenimi() {
@@ -31,7 +31,7 @@ public class Õpilane {
     }
 
     /**
-     * Õpilase hinnete get method
+     * Õpilase hinnete get meetod
      * @return õpilase hinded
      */
     public ArrayList<Integer> getHinded() {
@@ -90,7 +90,7 @@ public class Õpilane {
     }
 
     /**
-     * Meetod arvutab õpilas keskmist hinnet aine eest
+     * Meetod arvutab õpilase keskmist hinnet aine eest
      * @param klassid kõikide klasside ArrayList
      * @param õpilasePerenimi õpilase perenimi
      * @param õpilaseKlass õpilase klassi number
